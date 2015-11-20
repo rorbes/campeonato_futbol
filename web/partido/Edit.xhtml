@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PartidoEditDlg" widgetVar="PartidoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPartidoTitle}">
+            <h:form id="PartidoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{partidoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_idPartido}" for="idPartido" />
+                        <p:inputText id="idPartido" value="#{partidoController.selected.idPartido}" title="#{bundle.EditPartidoTitle_idPartido}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_idPartido}"/>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_fechaHora}" for="fechaHora" />
+                        <p:calendar id="fechaHora" pattern="MM/dd/yyyy HH:mm:ss" value="#{partidoController.selected.fechaHora}" title="#{bundle.EditPartidoTitle_fechaHora}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_fechaHora}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_juez3}" for="juez3" />
+                        <p:selectOneMenu id="juez3" value="#{partidoController.selected.juez3}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_juez3}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{arbitroController.itemsAvailableSelectOne}"
+                                           var="juez3Item"
+                                           itemValue="#{juez3Item}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_juez2}" for="juez2" />
+                        <p:selectOneMenu id="juez2" value="#{partidoController.selected.juez2}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_juez2}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{arbitroController.itemsAvailableSelectOne}"
+                                           var="juez2Item"
+                                           itemValue="#{juez2Item}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_juez1}" for="juez1" />
+                        <p:selectOneMenu id="juez1" value="#{partidoController.selected.juez1}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_juez1}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{arbitroController.itemsAvailableSelectOne}"
+                                           var="juez1Item"
+                                           itemValue="#{juez1Item}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_central}" for="central" />
+                        <p:selectOneMenu id="central" value="#{partidoController.selected.central}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_central}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{arbitroController.itemsAvailableSelectOne}"
+                                           var="centralItem"
+                                           itemValue="#{centralItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_idCancha}" for="idCancha" />
+                        <p:selectOneMenu id="idCancha" value="#{partidoController.selected.idCancha}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_idCancha}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{canchaController.itemsAvailableSelectOne}"
+                                           var="idCanchaItem"
+                                           itemValue="#{idCanchaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_visitante}" for="visitante" />
+                        <p:selectOneMenu id="visitante" value="#{partidoController.selected.visitante}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_visitante}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{equipoController.itemsAvailableSelectOne}"
+                                           var="visitanteItem"
+                                           itemValue="#{visitanteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPartidoLabel_local}" for="local" />
+                        <p:selectOneMenu id="local" value="#{partidoController.selected.local}" required="true" requiredMessage="#{bundle.EditPartidoRequiredMessage_local}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{equipoController.itemsAvailableSelectOne}"
+                                           var="localItem"
+                                           itemValue="#{localItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{partidoController.update}" value="#{bundle.Save}" update="display,:PartidoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PartidoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PartidoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

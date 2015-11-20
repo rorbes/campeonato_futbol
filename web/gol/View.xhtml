@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GolViewDlg" widgetVar="GolViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewGolTitle}">
+            <h:form id="GolViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{golController.selected != null}">
+                        <h:outputText value="#{bundle.ViewGolLabel_idGoles}"/>
+                        <h:outputText value="#{golController.selected.idGoles}" title="#{bundle.ViewGolTitle_idGoles}"/>
+                        <h:outputText value="#{bundle.ViewGolLabel_idPartido}"/>
+                        <h:outputText value="#{golController.selected.idPartido}" title="#{bundle.ViewGolTitle_idPartido}"/>
+                        <h:outputText value="#{bundle.ViewGolLabel_idEquipoJugador}"/>
+                        <h:outputText value="#{golController.selected.idEquipoJugador}" title="#{bundle.ViewGolTitle_idEquipoJugador}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="GolViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

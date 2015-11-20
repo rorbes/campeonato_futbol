@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PartidoViewDlg" widgetVar="PartidoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPartidoTitle}">
+            <h:form id="PartidoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{partidoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPartidoLabel_idPartido}"/>
+                        <h:outputText value="#{partidoController.selected.idPartido}" title="#{bundle.ViewPartidoTitle_idPartido}"/>
+                        <h:outputText value="#{bundle.ViewPartidoLabel_fechaHora}"/>
+                        <h:outputText value="#{partidoController.selected.fechaHora}" title="#{bundle.ViewPartidoTitle_fechaHora}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPartidoLabel_juez3}"/>
+                        <h:outputText value="#{partidoController.selected.juez3}" title="#{bundle.ViewPartidoTitle_juez3}"/>
+                        <h:outputText value="#{bundle.ViewPartidoLabel_juez2}"/>
+                        <h:outputText value="#{partidoController.selected.juez2}" title="#{bundle.ViewPartidoTitle_juez2}"/>
+                        <h:outputText value="#{bundle.ViewPartidoLabel_juez1}"/>
+                        <h:outputText value="#{partidoController.selected.juez1}" title="#{bundle.ViewPartidoTitle_juez1}"/>
+                        <h:outputText value="#{bundle.ViewPartidoLabel_central}"/>
+                        <h:outputText value="#{partidoController.selected.central}" title="#{bundle.ViewPartidoTitle_central}"/>
+                        <h:outputText value="#{bundle.ViewPartidoLabel_idCancha}"/>
+                        <h:outputText value="#{partidoController.selected.idCancha}" title="#{bundle.ViewPartidoTitle_idCancha}"/>
+                        <h:outputText value="#{bundle.ViewPartidoLabel_visitante}"/>
+                        <h:outputText value="#{partidoController.selected.visitante}" title="#{bundle.ViewPartidoTitle_visitante}"/>
+                        <h:outputText value="#{bundle.ViewPartidoLabel_local}"/>
+                        <h:outputText value="#{partidoController.selected.local}" title="#{bundle.ViewPartidoTitle_local}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PartidoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

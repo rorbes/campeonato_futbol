@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEquipoJugadorTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="EquipoJugadorListForm">
+                <p:panel header="#{bundle.ListEquipoJugadorTitle}">
+                    <p:dataTable id="datalist" value="#{equipoJugadorController.items}" var="item"
+                                 selectionMode="single" selection="#{equipoJugadorController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idCampeonatoEquipoJugador}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEquipoJugadorTitle_idCampeonatoEquipoJugador}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCampeonatoEquipoJugador}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEquipoJugadorTitle_idJugador}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idJugador}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEquipoJugadorTitle_idEquipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEquipo}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{equipoJugadorController.prepareCreate}" update=":EquipoJugadorCreateForm" oncomplete="PF('EquipoJugadorCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EquipoJugadorViewForm" oncomplete="PF('EquipoJugadorViewDialog').show()" disabled="#{empty equipoJugadorController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EquipoJugadorEditForm" oncomplete="PF('EquipoJugadorEditDialog').show()" disabled="#{empty equipoJugadorController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{equipoJugadorController.destroy}" update=":growl,datalist" disabled="#{empty equipoJugadorController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoCampeonatoEditDlg" widgetVar="TipoCampeonatoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTipoCampeonatoTitle}">
+            <h:form id="TipoCampeonatoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoCampeonatoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTipoCampeonatoLabel_idTipoCampeonato}" for="idTipoCampeonato" />
+                        <p:inputText id="idTipoCampeonato" value="#{tipoCampeonatoController.selected.idTipoCampeonato}" title="#{bundle.EditTipoCampeonatoTitle_idTipoCampeonato}" required="true" requiredMessage="#{bundle.EditTipoCampeonatoRequiredMessage_idTipoCampeonato}"/>
+                        <p:outputLabel value="#{bundle.EditTipoCampeonatoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{tipoCampeonatoController.selected.nombre}" title="#{bundle.EditTipoCampeonatoTitle_nombre}" required="true" requiredMessage="#{bundle.EditTipoCampeonatoRequiredMessage_nombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipoCampeonatoController.update}" value="#{bundle.Save}" update="display,:TipoCampeonatoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoCampeonatoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipoCampeonatoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

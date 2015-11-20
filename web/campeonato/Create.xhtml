@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CampeonatoCreateDlg" widgetVar="CampeonatoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCampeonatoTitle}">
+            <h:form id="CampeonatoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{campeonatoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCampeonatoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{campeonatoController.selected.descripcion}" title="#{bundle.CreateCampeonatoTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.CreateCampeonatoLabel_fechaInicio}" for="fechaInicio" />
+                        <p:calendar id="fechaInicio" pattern="MM/dd/yyyy" value="#{campeonatoController.selected.fechaInicio}" title="#{bundle.EditCampeonatoTitle_fechaInicio}" required="true" requiredMessage="#{bundle.EditCampeonatoRequiredMessage_fechaInicio}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCampeonatoLabel_fechaFin}" for="fechaFin" />
+                        <p:calendar id="fechaFin" pattern="MM/dd/yyyy" value="#{campeonatoController.selected.fechaFin}" title="#{bundle.EditCampeonatoTitle_fechaFin}" required="true" requiredMessage="#{bundle.EditCampeonatoRequiredMessage_fechaFin}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCampeonatoLabel_idTipoCampeonato}" for="idTipoCampeonato" />
+                        <p:selectOneMenu id="idTipoCampeonato" value="#{campeonatoController.selected.idTipoCampeonato}" required="true" requiredMessage="#{bundle.EditCampeonatoRequiredMessage_idTipoCampeonato}">
+                            <f:selectItems value="#{tipoCampeonatoController.itemsAvailableSelectOne}"
+                                           var="idTipoCampeonatoItem"
+                                           itemValue="#{idTipoCampeonatoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{campeonatoController.create}" value="#{bundle.Save}" update="display,:CampeonatoListForm:datalist,:growl" oncomplete="handleSubmit(args,'CampeonatoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CampeonatoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

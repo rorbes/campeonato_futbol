@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SancionEditDlg" widgetVar="SancionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSancionTitle}">
+            <h:form id="SancionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sancionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSancionLabel_idSanciones}" for="idSanciones" />
+                        <p:inputText id="idSanciones" value="#{sancionController.selected.idSanciones}" title="#{bundle.EditSancionTitle_idSanciones}" required="true" requiredMessage="#{bundle.EditSancionRequiredMessage_idSanciones}"/>
+                        <p:outputLabel value="#{bundle.EditSancionLabel_idEquipoJugador}" for="idEquipoJugador" />
+                        <p:selectOneMenu id="idEquipoJugador" value="#{sancionController.selected.idEquipoJugador}" required="true" requiredMessage="#{bundle.EditSancionRequiredMessage_idEquipoJugador}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{equipoJugadorController.itemsAvailableSelectOne}"
+                                           var="idEquipoJugadorItem"
+                                           itemValue="#{idEquipoJugadorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSancionLabel_idTipoSancion}" for="idTipoSancion" />
+                        <p:selectOneMenu id="idTipoSancion" value="#{sancionController.selected.idTipoSancion}" required="true" requiredMessage="#{bundle.EditSancionRequiredMessage_idTipoSancion}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoSancionController.itemsAvailableSelectOne}"
+                                           var="idTipoSancionItem"
+                                           itemValue="#{idTipoSancionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSancionLabel_idPartido}" for="idPartido" />
+                        <p:selectOneMenu id="idPartido" value="#{sancionController.selected.idPartido}" required="true" requiredMessage="#{bundle.EditSancionRequiredMessage_idPartido}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{partidoController.itemsAvailableSelectOne}"
+                                           var="idPartidoItem"
+                                           itemValue="#{idPartidoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sancionController.update}" value="#{bundle.Save}" update="display,:SancionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SancionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SancionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

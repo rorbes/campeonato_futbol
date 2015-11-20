@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="hot-sneaks"/>
+    </h:head>
+    <h:body>
+        <h:form class="form-control">
+            <p:menubar>
+                <p:menuitem value="Gestion de Campeonatos" url="index.xhtml"/>
+                <p:menuitem value="Inicio" url="index.xhtml" icon="ui-icon-home" />
+                <p:submenu label="Parametros" icon="ui-icon-check">
+                    <p:menuitem value="Arbitros" outcome="/arbitro/List"/>
+                    <p:separator/>
+                    <p:menuitem value="Campeonatos" outcome="/campeonato/List"/>
+                    <p:separator/>
+                    <p:menuitem value="Canchas" outcome="/cancha/List"/>
+                    <p:separator/>
+                    <p:menuitem value="Equipos" outcome="/equipo/List"/>
+                    <p:separator/>
+                    <p:menuitem value="Equipo-Jugador" outcome="/equipoJugador/List"/>
+                    <p:separator/>
+                    <p:menuitem value="Goles" outcome="/gol/List"/>
+                    <p:separator/>
+                    <p:menuitem value="Grupos" outcome="/grupo/List"/>
+                    <p:separator/>
+                    <p:menuitem value="Jugadores" outcome="/jugador/List"/>
+                    <p:separator/>
+                    <p:menuitem value="Partidos" outcome="/partido/List"/>
+                    <p:separator/>
+                    <p:menuitem value="Sanciones" outcome="/sancion/List"/>
+                    <p:separator/>
+                    <p:menuitem value="Tipo de Campeonato" outcome="/tipoCampeonato/List"/>
+                    <p:separator/>
+                    <p:menuitem value="Tipo de Sanciones" outcome="/tipoSancion/List"/>
+                    <p:separator/>
+                </p:submenu>
+            </p:menubar>  
+        </h:form>
+        <h:form>
+<!--uso de outputPanel carga el texto despues de cargar la pagina-->
+        <p:outputPanel  deferredMode="load"  deferred="true">
+        <h3 align="center">Aplicación para el manejo de campeonatos de futbol</h3>
+        <p>La Copa Mundial de la FIFA, también conocida como Copa Mundial de Fútbol (Copa Mundial de Fútbol, en algunos países hispanohablantes), Copa del Mundo o Mundial, cuyo nombre original fue Campeonato Mundial de Fútbol, es el principal torneo internacional de fútbol masculino a nivel de selecciones nacionales en el mundo. Además existen otras competiciones que también son copas mundiales de fútbol, entre las que destacan la Copa Mundial Femenina de Fútbol, con sus respectivas categorías con límite de edad, la Copa Mundial de Fútbol Sub-20 y la Copa Mundial de Fútbol Sub-17, todas organizadas por la FIFA.</p>
+    </p:outputPanel>
+</h:form>
+        <br/>
+    <div align="center"><img src="futbol.jpg" class="img-thumbnail" alt="Cinque Terre" width="604" height="436"/></div>
+    
+      </h:body>
+</html>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EquipoJugadorViewDlg" widgetVar="EquipoJugadorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEquipoJugadorTitle}">
+            <h:form id="EquipoJugadorViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{equipoJugadorController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEquipoJugadorLabel_idCampeonatoEquipoJugador}"/>
+                        <h:outputText value="#{equipoJugadorController.selected.idCampeonatoEquipoJugador}" title="#{bundle.ViewEquipoJugadorTitle_idCampeonatoEquipoJugador}"/>
+                        <h:outputText value="#{bundle.ViewEquipoJugadorLabel_idJugador}"/>
+                        <h:outputText value="#{equipoJugadorController.selected.idJugador}" title="#{bundle.ViewEquipoJugadorTitle_idJugador}"/>
+                        <h:outputText value="#{bundle.ViewEquipoJugadorLabel_idEquipo}"/>
+                        <h:outputText value="#{equipoJugadorController.selected.idEquipo}" title="#{bundle.ViewEquipoJugadorTitle_idEquipo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EquipoJugadorViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
